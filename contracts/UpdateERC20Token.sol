@@ -16,4 +16,15 @@ contract UpgradableERC20Token {
     // ) ERC20(_name, _symbol) {
     //     totalSupply = _totalSupply;
     // }
+
+    // function Mint() public {
+    //         require(msg.value > mintPrice, "Incorrect Mint Price!");
+    //         require(totalMinted < totalSupply, "Total supply end");
+    //         uint tokenId = _tokenIdCounter;
+    //         _tokenIdCounter++;
+    //         _mint(msg.sender, tokenId);
+    //     }
+    function UpdateTotalSupply(uint _updateValue) public {
+        totalSupply = _updateValue;
+    }
 }

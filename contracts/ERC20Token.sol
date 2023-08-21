@@ -6,7 +6,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 // import "hardhat/console.sol";
 
 contract ERC20Token is ERC20 {
-    uint public val;
     uint public totalMinted;
     uint private totalSupply;
     uint mintPrice = 0.01 ether;

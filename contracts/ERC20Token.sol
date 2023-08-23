@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract ERC20Token is ERC20 {
     uint public totalMinted;
-    uint private totalSupply;
+    uint private tokenTotalSupply;
     uint mintPrice = 0.01 ether;
     uint _tokenIdCounter = 1;
 
@@ -16,12 +16,12 @@ contract ERC20Token is ERC20 {
         string memory _symbol,
         uint _totalSupply
     ) ERC20(_name, _symbol) {
-        totalSupply = _totalSupply;
+        tokenTotalSupply = _totalSupply;
     }
 
-    function Mint() public {
+    function Mint() public payable {
         require(msg.value > mintPrice, "Incorrect Mint Price!");
-        require(totalMinted < totalSupply, "Total supply end");
+        require(totalMinted < tokenTotalSupply, "Total supply end");
         uint tokenId = _tokenIdCounter;
         _tokenIdCounter++;
         _mint(msg.sender, tokenId);

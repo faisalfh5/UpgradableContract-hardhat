@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 // import "hardhat/console.sol";
 
 contract UpgradableERC20Token {
-    uint private totalSupply;
+    uint private _totalSupply;
 
     // constructor(
     //     string memory _name,
@@ -25,6 +25,6 @@ contract UpgradableERC20Token {
     //         _mint(msg.sender, tokenId);
     //     }
     function UpdateTotalSupply(uint _updateValue) public {
-        totalSupply = _updateValue;
+        _totalSupply = _updateValue;
     }
 }

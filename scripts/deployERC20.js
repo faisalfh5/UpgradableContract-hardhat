@@ -1,9 +1,33 @@
-import { ethers, upgrades } from "hardhat";
+const { ethers, upgrades } = require("hardhat");
+const web3 = require("web3");
 
 async function main() {
   const contract = await ethers.getContractFactory("ERC20Token");
+  console.log("🚀 contract deploying...");
 
-  const deployContract = await upgrades.deployeProxy(contract);
+  let fc = web3.eth.abi.encodeFunctionCall(
+    {
+      name: "initialize",
+      type: "function",
+      inputs: [
+        {
+          type: "string",
+          name: "_name",
+        },
+        {
+          type: "string",
+          name: "_symbol",
+        },
+        {
+          type: "uint256",
+          name: "_totalSupplyh",
+        },
+      ],
+    },
+    ["NFT Marketplace", "NFTM", "3"]
+  );
+
+  const deployContract = await upgrades.deployeProxy(contract, fc);
 
   await deployContract.deployed();
   console.log("Box deployed to:", deployContract.address);
